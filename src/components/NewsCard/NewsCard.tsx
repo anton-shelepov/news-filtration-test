@@ -1,5 +1,6 @@
-import { INewsCardModel } from "models/newsCardModel"
 import { SvgSelector } from "components/SvgSelector"
+import { INewsCardModel } from "models/newsCardModel"
+import { useMemo } from "react"
 import { formatDateRu } from "utils/scripts/formatDateRu"
 import { NewsStyle, selectNewsStyle } from "utils/scripts/selectNewsCardStyle"
 import s from "./NewsCard.module.scss"
@@ -13,7 +14,9 @@ export const NewsCard: React.FC<INewsCardProps> = ({
    cardStyle,
    data: { datePublish, image, shortText },
 }) => {
-   const { color, icon } = selectNewsStyle(cardStyle)
+   const memoizedCardStyle = useMemo(() => cardStyle, [])
+
+   const { color, icon } = selectNewsStyle(memoizedCardStyle)
 
    return (
       <div className={s.container}>

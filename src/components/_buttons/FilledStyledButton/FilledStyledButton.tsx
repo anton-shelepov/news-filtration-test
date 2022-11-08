@@ -8,11 +8,11 @@ interface IFilledStyledButtonProps {
    onClick: () => void
 }
 
-export const FilledStyledButton: React.FC<IFilledStyledButtonProps> = ({ style, text }) => {
+export const FilledStyledButton: React.FC<IFilledStyledButtonProps> = ({ style, text, ...restProps }) => {
    const { color, icon } = selectNewsStyle(style)
 
    return (
-      <button className={s.button_styled} style={{ backgroundColor: color }}>
+      <button {...restProps} className={s.button_styled} style={{ backgroundColor: color }}>
          {text}
          <SvgSelector color="#ffffff" icon={icon} />
       </button>
