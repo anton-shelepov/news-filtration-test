@@ -9,4 +9,10 @@
    border-radius: 36px;
    color: #ffffff;
    font-weight: 700;
+   cursor: pointer;
+
+   transition: opacity 0.2s;
+   &:hover {
+      opacity: 0.8;
+   }
 }

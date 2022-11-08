@@ -31,9 +31,9 @@ const newsSlice = createSlice({
       })
 
       builder.addCase(fetchNews.fulfilled, (state, { payload }) => {
+         state.data = payload
          state.loading = "success"
          state.error = null
-         state.data = payload
       })
    },
 })

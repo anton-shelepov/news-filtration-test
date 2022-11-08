@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit"
+import newsSlice from "./slices/newsSlice"
 
 const store = configureStore({
    reducer: {
-      //  one: oneSlice.reducer,
-      //  two: twoSlice.reducer,
+      news: newsSlice.reducer,
    },
 })
 export type RootState = ReturnType<typeof store.getState>
