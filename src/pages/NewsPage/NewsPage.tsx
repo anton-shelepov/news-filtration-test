@@ -15,8 +15,6 @@ export const NewsPage: React.FC<INewsPageProps> = () => {
    const [search, setSearch] = useState("")
    const dispatch = useAppDispatch()
 
-   const [applyCardsStyle, setApplyCardsStyle] = useState<NewsStyle>("green")
-
    const onHandleSearch = (value: string) => {
       setSearch(value)
    }
@@ -27,7 +25,6 @@ export const NewsPage: React.FC<INewsPageProps> = () => {
 
    const onHandleLoadButtonClick = (style: NewsStyle) => {
       dispatch(fetchNews({ page: randomFromTo(1, 10), style }))
-      setApplyCardsStyle(style)
    }
 
    const styledLoadButtonsList: { id: number; style: NewsStyle }[] = [
@@ -51,7 +48,7 @@ export const NewsPage: React.FC<INewsPageProps> = () => {
             <SearchInput onSearch={onHandleSearch} searchTimeout={200} placeholder="Поиск" />
          </div>
          <div className={s.block_news_list}>
-            <NewsCardsList applyCardsStyle={applyCardsStyle} shortTextFiltration={search} />
+            <NewsCardsList shortTextFiltration={search} />
          </div>
          <div className={s.block_load_buttons}>
             {styledLoadButtonsList.map(({ id, style }) => (

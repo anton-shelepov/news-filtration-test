@@ -1,32 +1,38 @@
 import { NewsCard } from "components/NewsCard"
-import { useCallback, useRef } from "react"
+import { useEffect, useState } from "react"
 import { INewsStateDataItem } from "redux/slices/newsSlice"
 import { useAppSelector } from "utils/hooks/useAppSelector"
-import { NewsStyle } from "utils/scripts/selectNewsCardStyle"
 
 interface INewsCardsListProps {
    shortTextFiltration: string
-   applyCardsStyle: NewsStyle
 }
 
-export const NewsCardsList: React.FC<INewsCardsListProps> = ({ shortTextFiltration, applyCardsStyle }) => {
+export const NewsCardsList: React.FC<INewsCardsListProps> = ({ shortTextFiltration }) => {
    const newsState = useAppSelector((state) => state.news)
-   const filteredNewsData = useRef<INewsStateDataItem[]>([])
+   const [filteredNewsData, setFilteredNewsData] = useState<INewsStateDataItem[]>([])
 
-   const filterNewsData = useCallback(() => {
-      filteredNewsData.current = newsState.data.map((dataItem) => {
+   const filterNewsData = () => {
+      const updatedFilteredNewsData = newsState.data.map((dataItem) => {
          const filteredNews = dataItem.news.filter((newsItem) =>
             newsItem.shortText.toLowerCase().includes(shortTextFiltration.toLowerCase())
          )
          return { ...dataItem, news: filteredNews }
       })
-   }, [newsState.data, shortTextFiltration])
+      setFilteredNewsData(updatedFilteredNewsData)
+   }
 
-   filterNewsData()
+   useEffect(() => {
+      if (shortTextFiltration !== "") {
+         filterNewsData()
+         return
+      }
+      setFilteredNewsData(() => newsState.data)
+      console.log(newsState.data)
+   }, [JSON.stringify(newsState.data), shortTextFiltration])
 
    return (
       <>
-         {filteredNewsData.current.map(({ news, style }) =>
+         {filteredNewsData.map(({ news, style }) =>
             news.map(
                (newsItem, index) =>
                   newsItem.image && (

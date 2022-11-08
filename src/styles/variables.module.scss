@@ -1,4 +1,3 @@
-$pageWrapperWidth: 1512px;
 $defaultFontSize: 16px;
 
 $desktopSafePadding: 48px;
@@ -9,8 +8,19 @@ $fontSizes: (
    medium: 1.125rem,
 );
 
+$pageWrappersWidths: (
+   extraSmall: 432px,
+   small: 647px,
+   medium: 943px,
+   large: 1226px,
+   extraLarge: 1512px,
+);
+
 $breakpoints: (
-   small: 480px,
+   extraSmall: 582px,
+   small: 837px,
+   medium: 1092px,
+   large: 1347px,
 );
 
 $themeColors: (

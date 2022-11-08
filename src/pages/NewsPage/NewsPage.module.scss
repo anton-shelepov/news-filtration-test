@@ -1,5 +1,11 @@
+@import "src/styles";
+
 .block_search {
    margin-top: 48px;
+
+   @include breakpointMax(bp(small)) {
+      margin-top: 24px;
+   }
 }
 
 .block_news_list {
@@ -7,6 +13,23 @@
    grid-template-columns: repeat(5, 1fr);
    gap: 24px;
    margin-top: 48px;
+
+   @include breakpointMax(bp(large)) {
+      grid-template-columns: repeat(4, 1fr);
+   }
+
+   @include breakpointMax(bp(medium)) {
+      grid-template-columns: repeat(3, 1fr);
+   }
+
+   @include breakpointMax(bp(small)) {
+      grid-template-columns: repeat(2, 1fr);
+   }
+
+   @include breakpointMax(bp(extraSmall)) {
+      gap: 12px;
+      margin-top: 16px;
+   }
 }
 
 .block_load_buttons {
@@ -16,4 +39,15 @@
    gap: 29px;
    margin-top: 24px;
    padding-bottom: 74px;
+
+   @include breakpointMax(bp(small)) {
+      gap: 12px;
+   }
+
+   @include breakpointMax(bp(extraSmall)) {
+      margin-top: 18px;
+      padding-bottom: 24px;
+      display: grid;
+      grid-template: "a b" "c c";
+   }
 }

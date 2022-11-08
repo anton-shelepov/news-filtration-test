@@ -1,13 +1,23 @@
 @import "/src/styles";
 
 .wrapper {
-   max-width: $pageWrapperWidth;
+   max-width: pageWrapperWidth(extraLarge);
    width: 100%;
    margin: 0 auto;
    background-color: #ffffff;
    padding: 0 $desktopSafePadding;
+   min-width: 480px;
 
+   @include breakpointMax(bp(large)) {
+      max-width: pageWrapperWidth(large);
+   }
+   @include breakpointMax(bp(medium)) {
+      max-width: pageWrapperWidth(medium);
+   }
    @include breakpointMax(bp(small)) {
+      max-width: pageWrapperWidth(small);
+   }
+   @include breakpointMax(bp(extraSmall)) {
       padding: 0 $mobileSafePadding;
    }
 }

@@ -28,6 +28,8 @@ export const SearchInput: React.FC<ISearchInputProps> = ({ onSearch, searchTimeo
       }
 
       updateSearchTimeout(inputValue)
+
+      return () => clearTimeout(searchTimer.current)
    }, [inputValue])
 
    const onHandleContainerClick = () => {
