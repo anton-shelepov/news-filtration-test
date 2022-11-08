@@ -1,0 +1,21 @@
+@import "/src/styles";
+
+.container {
+   border: 2px solid themeColor(inputBorderColorPrimary);
+   border-radius: 12px;
+   padding: rem(12) rem(18);
+   display: flex;
+   align-items: center;
+
+   input {
+      border: none;
+      height: rem(21);
+      font-weight: 500;
+      width: 100%;
+      padding-right: rem(10);
+
+      &::placeholder {
+         color: themeColor(inputFontColorPrimary);
+      }
+   }
+}

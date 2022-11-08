@@ -5,13 +5,17 @@ $desktopSafePadding: 48px;
 $mobileSafePadding: 24px;
 
 $fontSizes: (
-   normal: rem(16),
-   medium: rem(18),
+   normal: 1rem,
+   medium: 1.125rem,
+);
+
+$breakpoints: (
+   small: 480px,
 );
 
 $themeColors: (
    // Cards
-   cardBackgroundPrimary: #c4c4c4,
+   cardBackgroundColorPrimary: #f5f5f5,
 
    // Inputs
    inputBorderColorPrimary: #4d4d4d,
@@ -22,3 +26,12 @@ $themeColors: (
    yellow: #fb9600,
    pink: #ff00b8
 );
+
+:export {
+   // Colors
+   inputFontColorPrimary: map-get($themeColors, inputFontColorPrimary);
+   greenColor: map-get($themeColors, green);
+   pinkColor: map-get($themeColors, pink);
+   yellowColor: map-get($themeColors, yellow);
+   cardBackgroundColorPrimary: map-get($themeColors, cardBackgroundColorPrimary);
+}

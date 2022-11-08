@@ -5,4 +5,9 @@
    height: 100vh;
    margin: 0 auto;
    background-color: #ffffff;
+   padding: 0 $desktopSafePadding;
+
+   @include breakpointMax(bp(small)) {
+      padding: 0 $mobileSafePadding;
+   }
 }

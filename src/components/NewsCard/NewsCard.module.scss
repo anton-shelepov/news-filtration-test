@@ -1,0 +1,36 @@
+@import "src/styles";
+
+.container {
+   max-width: rem(264);
+   width: 100%;
+   border-radius: 16px;
+   overflow: hidden;
+   background-color: themeColor(cardBackgroundColorPrimary);
+
+   .block_top {
+      height: 217px;
+      overflow: hidden;
+   }
+
+   .block_bottom {
+      padding: rem(22) rem(24) rem(24) rem(24);
+
+      .short_text {
+         font-size: fontSize(medium);
+         color: #000000;
+         font-weight: 700;
+         line-height: 130%;
+         height: rem(69);
+         overflow: hidden;
+      }
+
+      .date_styled {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         margin-top: rem(11);
+         font-weight: 700;
+         font-size: fontSize(medium);
+      }
+   }
+}

@@ -1,4 +1,4 @@
-import { IconName } from "./IconName"
+import { IconName } from "./IconName.d"
 
 interface ISvgSelectorProps {
    icon: IconName

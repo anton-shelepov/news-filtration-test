@@ -1,0 +1,12 @@
+@import "src/styles";
+
+.button_styled {
+   display: flex;
+   align-items: center;
+   gap: rem(10);
+   padding: rem(16) rem(32);
+   border: none;
+   border-radius: 36px;
+   color: #ffffff;
+   font-weight: 700;
+}
