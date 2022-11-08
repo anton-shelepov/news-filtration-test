@@ -1,0 +1,38 @@
+@import "./variables.module.scss";
+
+@function rem($pxValue) {
+   $remValue: ($pxValue / stripUnit($defaultFontSize)) + rem;
+   @return $remValue;
+}
+
+@function stripUnit($value) {
+   @if type-of($value) == "number" and not unitless($value) {
+      @return $value / ($value * 0 + 1);
+   }
+   @return $value;
+}
+
+// *****************************************************
+// *** Common functions for working with maps values ***
+// *****************************************************
+
+@function fontSize($key) {
+   @if not map-has-key($fontSizes, $key) {
+      @warn "Font size `#{$key}` not found.";
+   }
+   @return map-get($fontSizes, $key);
+}
+
+@function themeColor($key) {
+   @if not map-has-key($themeColors, $key) {
+      @warn "Theme color `#{$key}` not found.";
+   }
+   @return map-get($themeColors, $key);
+}
+
+@function bp($key) {
+   @if not map-has-key($themeColors, $key) {
+      @warn "Breakpoint `#{$key}` not found.";
+   }
+   @return map-get($breakpoints, $key);
+} ;

@@ -1,0 +1,24 @@
+$pageWrapperWidth: 1416px;
+$defaultFontSize: 16px;
+
+$desktopSafePadding: 48px;
+$mobileSafePadding: 24px;
+
+$fontSizes: (
+   normal: rem(16),
+   medium: rem(18),
+);
+
+$themeColors: (
+   // Cards
+   cardBackgroundPrimary: #c4c4c4,
+
+   // Inputs
+   inputBorderColorPrimary: #4d4d4d,
+   inputFontColorPrimary: #4d4d4d,
+
+   // Common colors
+   green: #378b60,
+   yellow: #fb9600,
+   pink: #ff00b8
+);

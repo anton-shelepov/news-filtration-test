@@ -1,0 +1,8 @@
+@import "/src/styles";
+
+.wrapper {
+   max-width: $pageWrapperWidth;
+   height: 100vh;
+   margin: 0 auto;
+   background-color: #ffffff;
+}
