@@ -1,1 +1,0 @@
-export { NewsCardsList } from "./NewsCardsList"

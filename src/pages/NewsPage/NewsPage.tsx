@@ -3,11 +3,12 @@ import { NewsCardsList } from "components/_containers/NewsCardsList"
 import { SearchInput } from "components/_inputs/SearchInput"
 import { PageWrapper } from "components/_wrappers/PageWrapper"
 import { useEffect, useState } from "react"
-import { fetchNews } from "redux/slices/newsSlice"
+import { fetchNews } from "redux/slices/newsSlice/newsSlice"
 import { useAppDispatch } from "utils/hooks/useAppDispatch"
 import { randomFromTo } from "utils/scripts/randomFromTo"
 import { NewsStyle } from "utils/scripts/selectNewsCardStyle"
 import s from "./NewsPage.module.scss"
+import { styledLoadButtonsList } from "./styledLoadButtonsList"
 
 interface INewsPageProps {}
 
@@ -21,26 +22,11 @@ export const NewsPage: React.FC<INewsPageProps> = () => {
 
    useEffect(() => {
       dispatch(fetchNews({ page: 7, style: "green" }))
-   }, [])
+   }, [dispatch])
 
    const onHandleLoadButtonClick = (style: NewsStyle) => {
       dispatch(fetchNews({ page: randomFromTo(1, 10), style }))
    }
-
-   const styledLoadButtonsList: { id: number; style: NewsStyle }[] = [
-      {
-         id: 1,
-         style: "green",
-      },
-      {
-         id: 2,
-         style: "pink",
-      },
-      {
-         id: 3,
-         style: "yellow",
-      },
-   ]
 
    return (
       <PageWrapper>

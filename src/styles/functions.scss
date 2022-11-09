@@ -12,9 +12,7 @@
    @return $value;
 }
 
-// *****************************************************
 // *** Common functions for working with maps values ***
-// *****************************************************
 
 @function fontSize($key) {
    @if not map-has-key($fontSizes, $key) {

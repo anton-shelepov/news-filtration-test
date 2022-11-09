@@ -18,7 +18,7 @@ export const NewsCard: React.FC<INewsCardProps> = ({
    return (
       <div className={s.container}>
          <div className={s.block_top}>
-            <img src={image} alt="news image" />
+            <img src={image} alt="Новость" />
          </div>
          <div className={s.block_bottom}>
             <h2 className={s.short_text}>{shortText}</h2>

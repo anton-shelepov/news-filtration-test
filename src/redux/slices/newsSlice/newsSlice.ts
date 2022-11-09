@@ -1,26 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import getNewsByPage from "api/news/getNewsByPage"
-import { INewsCardModel } from "models/newsCardModel"
-import { RootState } from "redux/store"
 import { NewsStyle } from "utils/scripts/selectNewsCardStyle"
-
-export type INewsStateDataItem = {
-   news: INewsCardModel[]
-   page: number
-   style: NewsStyle
-}
-
-export type INewsFulfilledThunkPayload = INewsStateDataItem & { isPageExisting: boolean }
-
-interface INewsState {
-   data: INewsStateDataItem[]
-   error: string | null
-   loading: "idle" | "pending" | "success" | "failure"
-}
-
-type asyncThunkAPI = {
-   state: RootState
-}
+import {
+   AsyncNewsThunkAPI,
+   INewsFulfilledThunkPayload,
+   INewsState,
+   INewsStateDataItem,
+} from "./newsSliceTypes"
 
 const initialState: INewsState = {
    data: [],
@@ -31,7 +17,7 @@ const initialState: INewsState = {
 export const fetchNews = createAsyncThunk<
    INewsFulfilledThunkPayload,
    { page: number; style: NewsStyle },
-   asyncThunkAPI
+   AsyncNewsThunkAPI
 >("news/fetch", async ({ page, style }, { getState }) => {
    const { news } = getState()
    const alreadyExistingPageNews = news.data.find((item) => item.page === page)
@@ -41,7 +27,7 @@ export const fetchNews = createAsyncThunk<
          data: { news },
       } = await getNewsByPage(page)
 
-      return { news, page, style, isPageExisting: false }
+      return { news, page, style }
    }
 
    return { ...alreadyExistingPageNews, style, isPageExisting: true }
@@ -58,25 +44,21 @@ const newsSlice = createSlice({
       })
 
       builder.addCase(fetchNews.fulfilled, (state, { payload }) => {
-         console.log(payload.page)
+         state.loading = "success"
+         state.error = null
+
          if (payload.isPageExisting) {
             const dataWithUpdatedPageNewsStyle = state.data.map((newsItem) =>
                newsItem.page === payload.page ? { ...newsItem, style: payload.style } : newsItem
             )
-            console.log(dataWithUpdatedPageNewsStyle, state.data)
             state.data = dataWithUpdatedPageNewsStyle
-         } else {
-            const sortedData: INewsStateDataItem[] = [...state.data, payload].sort((a, b) => {
-               if (a.page < b.page) {
-                  return -1
-               }
-               return 1
-            })
-            state.data = sortedData
+            return
          }
 
-         state.loading = "success"
-         state.error = null
+         const sortedData: INewsStateDataItem[] = [...state.data, payload].sort((a, b) =>
+            a.page < b.page ? -1 : 1
+         )
+         state.data = sortedData
       })
    },
 })

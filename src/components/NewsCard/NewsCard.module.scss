@@ -34,6 +34,9 @@
          margin-top: rem(11);
          font-weight: 700;
          font-size: fontSize(medium);
+         white-space: nowrap;
+         flex-wrap: wrap;
+         gap: 5px;
       }
    }
 }

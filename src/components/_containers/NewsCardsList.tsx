@@ -1,6 +1,6 @@
 import { NewsCard } from "components/NewsCard"
 import { useEffect, useState } from "react"
-import { INewsStateDataItem } from "redux/slices/newsSlice"
+import { INewsStateDataItem } from "redux/slices/newsSlice/newsSliceTypes"
 import { useAppSelector } from "utils/hooks/useAppSelector"
 
 interface INewsCardsListProps {
@@ -18,6 +18,7 @@ export const NewsCardsList: React.FC<INewsCardsListProps> = ({ shortTextFiltrati
          )
          return { ...dataItem, news: filteredNews }
       })
+
       setFilteredNewsData(updatedFilteredNewsData)
    }
 
@@ -26,8 +27,8 @@ export const NewsCardsList: React.FC<INewsCardsListProps> = ({ shortTextFiltrati
          filterNewsData()
          return
       }
-      setFilteredNewsData(() => newsState.data)
-      console.log(newsState.data)
+
+      setFilteredNewsData(newsState.data)
    }, [JSON.stringify(newsState.data), shortTextFiltration])
 
    return (
